@@ -1,3 +1,27 @@
 @BookApi_HostAddress = http://localhost:5264
 
+GET {{BookApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+POST {{BookApi_HostAddress}}/api/auth/register-user/
+Content-Type: application/json
+
+{
+    "userName": "testuser",
+    "password": "testpassword123"
+}
+
+###
+POST {{BookApi_HostAddress}}/api/auth/login-user/
+Content-Type: application/json
+
+{
+    "userName": "testuser",
+    "password": "testpassword123"
+}
+
+###
+GET {{BookApi_HostAddress}}/api/books/
+Cookie: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJCb29rQXBpQ2xpZW50IiwiaXNzIjoiQm9va0FwaSIsImV4cCI6MTc4ODk4ODQzMSwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InRlc3R1c2VyIiwiaWF0IjoxNzg4OTg0ODMxLCJuYmYiOjE3ODg5ODQ4MzF9.Xbr7287ka5pycmoiU5aFOxYbK01eqrsV9x2diSo84zc 
 
