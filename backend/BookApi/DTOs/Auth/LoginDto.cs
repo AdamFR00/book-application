@@ -1,8 +1,12 @@
+using System.ComponentModel.DataAnnotations;
 namespace BookApi.DTOs.Auth
 {
     public class LoginDto
     {
-        public string UserName { get; set; } = null!;
-        public string Password { get; set; } = null!;
+        [Required]
+        public required string UserName { get; set; } = null!;
+
+        [Required]
+        public required string Password { get; set; } = null!;
     }
 }

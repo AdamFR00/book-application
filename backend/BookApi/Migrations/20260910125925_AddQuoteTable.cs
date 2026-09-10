@@ -1,0 +1,106 @@
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace BookApi.Migrations
+{
+    /// <inheritdoc />
+    public partial class AddQuoteTable : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Quote_Users_UserId",
+                table: "Quote");
+
+            migrationBuilder.DropPrimaryKey(
+                name: "PK_Quote",
+                table: "Quote");
+
+            migrationBuilder.RenameTable(
+                name: "Quote",
+                newName: "Quotes");
+
+            migrationBuilder.RenameIndex(
+                name: "IX_Quote_UserId",
+                table: "Quotes",
+                newName: "IX_Quotes_UserId");
+
+            migrationBuilder.AlterColumn<int>(
+                name: "UserId",
+                table: "Quotes",
+                type: "integer",
+                nullable: false,
+                defaultValue: 0,
+                oldClrType: typeof(int),
+                oldType: "integer",
+                oldNullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Content",
+                table: "Quotes",
+                type: "text",
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.AddPrimaryKey(
+                name: "PK_Quotes",
+                table: "Quotes",
+                column: "QuoteId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Quotes_Users_UserId",
+                table: "Quotes",
+                column: "UserId",
+                principalTable: "Users",
+                principalColumn: "UserId",
+                onDelete: ReferentialAction.Cascade);
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Quotes_Users_UserId",
+                table: "Quotes");
+
+            migrationBuilder.DropPrimaryKey(
+                name: "PK_Quotes",
+                table: "Quotes");
+
+            migrationBuilder.DropColumn(
+                name: "Content",
+                table: "Quotes");
+
+            migrationBuilder.RenameTable(
+                name: "Quotes",
+                newName: "Quote");
+
+            migrationBuilder.RenameIndex(
+                name: "IX_Quotes_UserId",
+                table: "Quote",
+                newName: "IX_Quote_UserId");
+
+            migrationBuilder.AlterColumn<int>(
+                name: "UserId",
+                table: "Quote",
+                type: "integer",
+                nullable: true,
+                oldClrType: typeof(int),
+                oldType: "integer");
+
+            migrationBuilder.AddPrimaryKey(
+                name: "PK_Quote",
+                table: "Quote",
+                column: "QuoteId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Quote_Users_UserId",
+                table: "Quote",
+                column: "UserId",
+                principalTable: "Users",
+                principalColumn: "UserId");
+        }
+    }
+}
