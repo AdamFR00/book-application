@@ -23,5 +23,40 @@ Content-Type: application/json
 
 ###
 GET {{BookApi_HostAddress}}/api/books/
-Cookie: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJCb29rQXBpQ2xpZW50IiwiaXNzIjoiQm9va0FwaSIsImV4cCI6MTc4ODk4ODQzMSwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InRlc3R1c2VyIiwiaWF0IjoxNzg4OTg0ODMxLCJuYmYiOjE3ODg5ODQ4MzF9.Xbr7287ka5pycmoiU5aFOxYbK01eqrsV9x2diSo84zc 
+Cookie: accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJCb29rQXBpQ2xpZW50IiwiaXNzIjoiQm9va0FwaSIsImV4cCI6MTc4OTA0MTM5OSwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InRlc3R1c2VyIiwiaWF0IjoxNzg5MDM3Nzk5LCJuYmYiOjE3ODkwMzc3OTl9.PiCmHF8zNDP92CmY-IHj3L-cu-jp6LkFFwlnzKZ0yuE; expires=Fri, 11 Sep 2026 10:56:39 GMT; path=/; secure; samesite=none; httponly
+
+###
+PUT {{BookApi_HostAddress}}/api/books/2
+Cookie: accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJCb29rQXBpQ2xpZW50IiwiaXNzIjoiQm9va0FwaSIsImV4cCI6MTc4OTA0MTM5OSwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InRlc3R1c2VyIiwiaWF0IjoxNzg5MDM3Nzk5LCJuYmYiOjE3ODkwMzc3OTl9.PiCmHF8zNDP92CmY-IHj3L-cu-jp6LkFFwlnzKZ0yuE; expires=Fri, 11 Sep 2026 10:56:39 GMT; path=/; secure; samesite=none; httponly
+Content-Type: application/json
+
+{
+    "Title": "Frankenstein",
+    "Author": "mary Shelley",
+    "YearPublished": "1818"
+}
+
+###
+DELETE {{BookApi_HostAddress}}/api/books/3
+Cookie: accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJCb29rQXBpQ2xpZW50IiwiaXNzIjoiQm9va0FwaSIsImV4cCI6MTc4OTA0ODg4NywiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InRlc3R1c2VyIiwiaWF0IjoxNzg5MDQ1Mjg3LCJuYmYiOjE3ODkwNDUyODd9.kBI-LB_ZXrQayWWmne8TuqPjxqOQdOQTF3Y2GVrmeLg; expires=Fri, 11 Sep 2026 13:01:27 GMT; path=/; secure; samesite=none; httponly
+
+
+### 
+POST {{BookApi_HostAddress}}/api/quotes/
+Cookie: accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJCb29rQXBpQ2xpZW50IiwiaXNzIjoiQm9va0FwaSIsImV4cCI6MTc4OTA0ODg4NywiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InRlc3R1c2VyIiwiaWF0IjoxNzg5MDQ1Mjg3LCJuYmYiOjE3ODkwNDUyODd9.kBI-LB_ZXrQayWWmne8TuqPjxqOQdOQTF3Y2GVrmeLg; expires=Fri, 11 Sep 2026 13:01:27 GMT; path=/; secure; samesite=none; httponly
+Content-Type: application/json
+
+{
+    "Content": "Hello"
+}
+
+###
+Get {{BookApi_HostAddress}}/api/quotes/
+Cookie: accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJCb29rQXBpQ2xpZW50IiwiaXNzIjoiQm9va0FwaSIsImV4cCI6MTc4OTA0ODg4NywiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InRlc3R1c2VyIiwiaWF0IjoxNzg5MDQ1Mjg3LCJuYmYiOjE3ODkwNDUyODd9.kBI-LB_ZXrQayWWmne8TuqPjxqOQdOQTF3Y2GVrmeLg; expires=Fri, 11 Sep 2026 13:01:27 GMT; path=/; secure; samesite=none; httponly
+
+###
+DELETE {{BookApi_HostAddress}}/api/quotes/2
+Cookie: accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJCb29rQXBpQ2xpZW50IiwiaXNzIjoiQm9va0FwaSIsImV4cCI6MTc4OTA0ODg4NywiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InRlc3R1c2VyIiwiaWF0IjoxNzg5MDQ1Mjg3LCJuYmYiOjE3ODkwNDUyODd9.kBI-LB_ZXrQayWWmne8TuqPjxqOQdOQTF3Y2GVrmeLg; expires=Fri, 11 Sep 2026 13:01:27 GMT; path=/; secure; samesite=none; httponly
+
+
 
