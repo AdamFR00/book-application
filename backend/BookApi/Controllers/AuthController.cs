@@ -4,7 +4,9 @@ using BookApi.Data;
 using BookApi.Models;
 using BookApi.DTOs.Auth;
 using Microsoft.AspNetCore.Identity;
+using BookApi.Extensions;
 using BookApi.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookApi.Controllers
 {
@@ -69,6 +71,35 @@ namespace BookApi.Controllers
         {
             Response.Cookies.Delete("accessToken");
             return Ok();
+        }
+        [Authorize]
+        [HttpDelete("account")]
+        public async Task<IActionResult> DeleteUser()
+        {
+            var userId = User.GetUserId();
+
+            if(userId == null)
+            {
+                return Unauthorized();
+            }
+            var books = await context.Books.Where(b => b.UserId == userId).ToListAsync();
+            var quotes = await context.Quotes.Where(q => q.UserId == userId).ToListAsync();
+            var user = await context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+
+            if(user == null)
+            {
+                return NotFound();
+            }
+
+            context.Books.RemoveRange(books);
+            context.Quotes.RemoveRange(quotes);
+            context.Users.Remove(user);
+
+            await context.SaveChangesAsync();
+
+            Response.Cookies.Delete("accessToken");
+
+            return NoContent();
         }
     }
 }
