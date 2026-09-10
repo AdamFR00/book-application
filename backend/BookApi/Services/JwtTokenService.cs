@@ -6,19 +6,13 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace BookApi.Services
 {
-    internal sealed class JwtTokenService
+    public class JwtTokenService(IConfiguration configuration)
     {
-        private readonly IConfiguration _configuration;
-
-        public JwtTokenService(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
         public string Create(User user)
         {
             var secretKey = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(
-                    _configuration["Jwt:Key"]!));
+                    configuration["Jwt:Key"]!));
             
             var credentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
@@ -36,10 +30,10 @@ namespace BookApi.Services
                         )
                     ]
                 ),
-                Expires = DateTime.UtcNow.AddMinutes(_configuration.GetValue<int>("Jwt:ExpirationInMinutes")),
+                Expires = DateTime.UtcNow.AddMinutes(configuration.GetValue<int>("Jwt:ExpirationInMinutes")),
                 SigningCredentials = credentials,
-                Issuer = _configuration["Jwt:Issuer"],
-                Audience = _configuration["Jwt:Audience"]
+                Issuer = configuration["Jwt:Issuer"],
+                Audience = configuration["Jwt:Audience"]
             };
 
             var handler = new JsonWebTokenHandler();

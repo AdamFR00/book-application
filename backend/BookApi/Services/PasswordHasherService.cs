@@ -9,7 +9,7 @@ namespace BookApi.Services
         private const int SaltSize = 16;
         private const int HashSize = 32;
         private const int Iterations = 100000;
-        private readonly HashAlgorithmName Algorithm = HashAlgorithmName.SHA512;
+        private static readonly HashAlgorithmName Algorithm = HashAlgorithmName.SHA512;
 
         public string HashPassword(User user, string password)
         {

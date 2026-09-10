@@ -2,6 +2,6 @@ namespace BookApi.Models
 {
     public class Quote
     {
-        // TODO
+        public int QuoteId { get; set; }
     }
 }
