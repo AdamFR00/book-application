@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+footer {
+    box-shadow: 0 50vh 0 50vh #000
+}
+
+
+.app-layout {
+    min-height: 100vh;
+    display: flex; 
+    flex-direction: column;
+}
+
+.app-content {
+    flex: 1;
+}
+
