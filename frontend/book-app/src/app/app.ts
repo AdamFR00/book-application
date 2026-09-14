@@ -1,15 +1,20 @@
-import { Component, signal } from '@angular/core';
+import { Component} from '@angular/core';
+import { RouterOutlet, RouterLink} from '@angular/router';
+import { Header } from './components/header/header';
+import { Footer } from './components/footer/footer';
 
 @Component({
-  imports: [],
+  imports: [RouterOutlet, Header, Footer],
   selector: 'app-root',
   styles: [],
   template: `
-    <h1>Hello, {{ title() }}</h1>
-
-    
+  <div class="app-layout">
+    <app-header/>
+    <main class="app-content">
+      <router-outlet/>
+    </main>
+    <app-footer/>
+  </div>
   `,
 })
-export class App {
-  protected readonly title = signal('book-app');
-}
+export class App {}

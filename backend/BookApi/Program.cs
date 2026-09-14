@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
-var FrontendOrigin = ""; // add ASAP
+var FrontendOrigin = "http://localhost:4200"; // add ASAP
 var FrontendCorPolicyName = "Frontend";
 
 var builder = WebApplication.CreateBuilder(args);

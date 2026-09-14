@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using BookApi.Extensions;
 using BookApi.Services;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace BookApi.Controllers
 {
@@ -66,6 +67,7 @@ namespace BookApi.Controllers
             );
             return Ok("Login successful.");
         }
+        [Authorize]
         [HttpPost("logout")]
         public IActionResult Logout()
         {
@@ -100,6 +102,25 @@ namespace BookApi.Controllers
             Response.Cookies.Delete("accessToken");
 
             return NoContent();
+        }
+
+        [Authorize]
+        [HttpGet("me")]
+        public IActionResult GetUserName()
+        {
+            var userName = User.FindFirstValue(ClaimTypes.Name);
+
+            if(userName == null)
+            {
+                return Unauthorized();
+            }else
+            {
+                return Ok(new
+                {
+                    userName
+                });
+            }
+            
         }
     }
 }
