@@ -1,1 +1,31 @@
-<p>books works!</p>
+<div class="container">
+  <div class="card shadow position-relative" style="max-width: 800px;">
+    <button
+    type="button"
+    class="nav-link navbar-button add-button position-absolute top-0 end-0 mt-3 me-2"
+    routerLink="../create-book">
+    <fa-icon [icon]="faPlus"></fa-icon>
+    </button>
+    <div class="card-header text-center text-dark">
+        <h3>Your Books</h3>
+    </div>
+    <div class="card-body p-4">
+      <div class="list-group">
+        @for (book of books(); track book.bookId) {
+            <div class="list-group-item py-3">
+                <div class="fw-semibold text-center fs-5">
+                    {{ book.title }}  by {{book.author}}
+                    @if (book.yearPublished) {
+                        <span> | {{book.yearPublished}}</span>
+                    }
+                </div>
+                <div class="d-flex gap position-absolute top-0 end-0 mt-2 me-2">
+                    <button type="button" class="nav-link edit-button navbar-button me-2" [routerLink]="['../edit-book', book.bookId]"><fa-icon [icon]="faPen"></fa-icon></button>
+                    <button type="button" class="btn delete-button"><fa-icon [icon]="faX" class="text-danger" (click)="removeBook(book.bookId)"></fa-icon></button>
+                </div>
+            </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
