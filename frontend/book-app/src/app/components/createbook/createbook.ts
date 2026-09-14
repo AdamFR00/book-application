@@ -1,0 +1,46 @@
+import { Component, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import { environment } from '../../../environments/environment';
+import { Router, RouterLink } from '@angular/router';
+
+@Component({
+  imports: [ReactiveFormsModule],
+  selector: 'app-createbook',
+  styleUrl: './createbook.css',
+  templateUrl: './createbook.html',
+})
+export class Createbook {
+  private http = inject(HttpClient);
+  private router = inject(Router);
+  bookForm: FormGroup = new FormGroup({
+    Title: new FormControl<string>('', {
+      nonNullable: true,
+    validators: [Validators.required]
+  }
+),
+  Author: new FormControl<string>('', {
+      nonNullable: true,
+    validators: [Validators.required]
+  }
+),
+  YearPublished: new FormControl<number | null>(null, {validators: [Validators.required]})
+});
+
+createBook() {
+  this.http.post(`${environment.apiUrl}/books`, this.bookForm.value, {withCredentials: true})
+  .subscribe({
+    next: (response) => {
+      debugger;
+      console.log("Created book!", response);
+      this.router.navigate(['/home/books']);
+    },
+    error: (error) => {
+      alert(`Failed to create book.`);
+      console.log("Book creation failed due to: ", error);
+      this.router.navigate(['/home/books']);
+    }
+  })
+}
+
+}

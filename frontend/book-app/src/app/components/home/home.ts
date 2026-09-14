@@ -4,7 +4,6 @@ import { OnInit, inject, signal} from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { User } from '../../models/user';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faHouse, faBook, faQuoteLeft, faQuoteRight, faBars } from '@fortawesome/free-solid-svg-icons';
 import { RouterOutlet } from '@angular/router';
 import { SideBar } from '../sidebar/sidebar';
 

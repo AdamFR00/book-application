@@ -30,35 +30,22 @@ export class Login {
   });
   
   onLogin(){
-    if(this.loginForm.valid) {
-      this.http.post(
-        `${environment.apiUrl}/auth/login-user`,
-         this.loginForm.value, 
-         {withCredentials: true,
-          responseType: 'text'
-         }).subscribe({
-          next:(result)=>{
-            console.log(result)
-            this.router.navigate(['/home']) 
-          },
-          error: error => {
-            if(error.status == 401) {
-              alert("Wrong username or password.")
-            }
+    this.http.post(
+      `${environment.apiUrl}/auth/login-user`,
+        this.loginForm.value, 
+        {withCredentials: true,
+        responseType: 'text'
+        }).subscribe({
+        next:(result)=>{
+          console.log(result)
+          this.router.navigate(['/home']) 
+        },
+        error: error => {
+          if(error.status == 401) {
+            alert("Wrong username or password.")
           }
-         }
-      );
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  get userName(){
-    return this.loginForm.get('UserName')
-  }
-
-  get password(){
-    return this.loginForm.get('Password')
+        }
+        }
+    );
   }
 }

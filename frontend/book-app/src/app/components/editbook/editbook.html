@@ -1,0 +1,47 @@
+<div class="container py-5">
+  <div class="card shadow mx-auto" style="max-width: 800px;">
+    <div class="card-body p-4">
+
+      <h2 class="card-title mb-4">Edit Book</h2>
+
+      <form [formGroup]="bookForm" (ngSubmit)="updateBook(bookId)">
+
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input
+            id="title"
+            type="text"
+            class="form-control"
+            formControlName="Title">
+        </div>
+
+        <div class="mb-3">
+          <label for="author" class="form-label">Author</label>
+          <input
+            id="author"
+            type="text"
+            class="form-control"
+            formControlName="Author">
+        </div>
+
+        <div class="mb-4">
+          <label for="releaseYear" class="form-label">
+            Release Year
+          </label>
+          <input
+            id="releaseYear"
+            type="number"
+            class="form-control"
+            formControlName="YearPublished">
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="bookForm.invalid">
+          Save Changes
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
