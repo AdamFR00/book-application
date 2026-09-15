@@ -71,7 +71,15 @@ namespace BookApi.Controllers
         [HttpPost("logout")]
         public IActionResult Logout()
         {
-            Response.Cookies.Delete("accessToken");
+            Response.Cookies.Delete("accessToken", 
+                new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.Unspecified,
+                    Path = "/"
+                }
+            );
             return Ok();
         }
         [Authorize]
