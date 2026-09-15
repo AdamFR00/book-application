@@ -2,12 +2,15 @@
   <div class="card shadow mx-auto" style="max-width: 800px;">
     <div class="card-body p-4">
 
-      <h2 class="card-title mb-4">Add Book</h2>
-
+      
+      <button class="btn btn-primary " routerLink="/home/books"><fa-icon [icon]="faArrowLeft"></fa-icon></button>
+      
+      <h2 class="card-title mb-4 text-center">Add Book</h2>
+  
       <form [formGroup]="bookForm" (ngSubmit)="createBook()">
 
         <div class="mb-3">
-          <label for="title" class="form-label">Title</label>
+          <label for="title" class="form-label fw-bold">Title</label>
           <input
             id="title"
             type="text"
@@ -16,7 +19,7 @@
         </div>
 
         <div class="mb-3">
-          <label for="author" class="form-label">Author</label>
+          <label for="author" class="form-label fw-bold">Author</label>
           <input
             id="author"
             type="text"
@@ -25,7 +28,7 @@
         </div>
 
         <div class="mb-4">
-          <label for="releaseYear" class="form-label">
+          <label for="releaseYear" class="form-label fw-bold">
             Release Year
           </label>
           <input
@@ -38,9 +41,7 @@
         <button type="submit" class="btn btn-primary" [disabled]="bookForm.invalid">
           Add Book
         </button>
-
       </form>
-
     </div>
   </div>
 </div>

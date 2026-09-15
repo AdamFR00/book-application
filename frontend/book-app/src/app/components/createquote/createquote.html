@@ -1,0 +1,28 @@
+<div class="container py-5">
+  <div class="card shadow mx-auto" style="max-width: 800px;">
+    <div class="card-body">
+      <button class="btn btn-primary " routerLink="/home/quotes"><fa-icon [icon]="faArrowLeft"></fa-icon></button>
+      <h2 class="card-title mb-4 text-center">Add Quote</h2>
+
+      <form [formGroup]="quoteForm" (ngSubmit)="createQuote()">
+
+        <div class="mb-3">
+          <label for="title" class="form-label fw-semibold">Quote</label>
+          <textarea
+            id="content"
+            type="text"
+            class="form-control"
+            formControlName="content"
+            rows="4">
+            </textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="quoteForm.invalid">
+          Add Quote
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+</div>
