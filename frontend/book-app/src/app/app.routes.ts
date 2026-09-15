@@ -6,8 +6,10 @@ import { Books } from './components/books/books';
 import { Quotes } from './components/quotes/quotes';
 import { authGuard } from './guards/auth-guard';
 import { rootRedirectGuard } from './guards/root-redirect-guard';
-import { Createbook } from './components/createbook/createbook';
-import { Editbook } from './components/editbook/editbook';
+import { CreateBook } from './components/createbook/createbook';
+import { EditBook } from './components/editbook/editbook';
+import { CreateQuote } from './components/createquote/createquote';
+import { EditQuote } from './components/editquote/editquote';
 
 
 
@@ -32,10 +34,17 @@ export const routes: Routes = [
         component: Home,
         canActivate: [authGuard],
         children:[
+                {
+                    path: '',
+                    redirectTo: 'books',
+                    pathMatch: 'full'
+                },
                 {path: 'books', component: Books},
+                {path: 'create-book', component: CreateBook},
+                {path: 'edit-book/:id', component: EditBook},
                 {path: 'quotes', component: Quotes},
-                {path: 'create-book', component: Createbook},
-                {path: 'edit-book/:id', component: Editbook}],
+                {path: 'create-quote', component: CreateQuote},
+                {path: 'edit-quote/:id', component: EditQuote}]
         
     }
 ];

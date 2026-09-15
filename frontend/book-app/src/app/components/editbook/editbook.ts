@@ -11,7 +11,7 @@ import { Book } from '../../models/book';
   styleUrl: './editbook.css',
   templateUrl: './editbook.html',
 })
-export class Editbook implements OnInit{
+export class EditBook implements OnInit{
   private http = inject(HttpClient);
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute); 

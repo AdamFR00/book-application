@@ -39,9 +39,6 @@ export class Books implements OnInit{
       });
   }
 
-  updateBook(){
-
-  }
   removeBook(bookId: number){
     this.http.delete(`${environment.apiUrl}/books/${bookId}`, {withCredentials: true}).subscribe(
       {next: () => {
