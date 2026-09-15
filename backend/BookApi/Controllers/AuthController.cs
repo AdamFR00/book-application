@@ -76,7 +76,7 @@ namespace BookApi.Controllers
                 {
                     HttpOnly = true,
                     Secure = true,
-                    SameSite = SameSiteMode.Unspecified,
+                    SameSite = SameSiteMode.None,
                     Path = "/"
                 }
             );
