@@ -11,6 +11,7 @@ var FrontendCorPolicyName = "Frontend";
 
 var builder = WebApplication.CreateBuilder(args);
 var frontendOrigin = builder.Configuration["FrontendOrigin"] ?? "http://localhost:4200";
+Console.WriteLine($"Frontend origin: {frontendOrigin}");
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -68,11 +69,12 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-app.UseAuthentication();
-app.UseAuthorization();
-app.MapControllers();
 app.UseCors(FrontendCorPolicyName);
 
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();
 
