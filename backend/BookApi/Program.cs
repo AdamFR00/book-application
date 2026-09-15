@@ -11,7 +11,6 @@ var FrontendCorPolicyName = "Frontend";
 
 var builder = WebApplication.CreateBuilder(args);
 var frontendOrigin = builder.Configuration["FrontendOrigin"] ?? "http://localhost:4200";
-Console.WriteLine($"Frontend origin: {frontendOrigin}");
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
