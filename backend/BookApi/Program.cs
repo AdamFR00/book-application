@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
-var FrontendOrigin = "http://localhost:4200"; // add ASAP
 var FrontendCorPolicyName = "Frontend";
 
 var builder = WebApplication.CreateBuilder(args);
+var frontendOrigin = builder.Configuration["FrontendOrigin"] ?? "http://localhost:4200";
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -59,7 +59,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: FrontendCorPolicyName,
             policy =>
             {
-                policy.WithOrigins(FrontendOrigin)
+                policy.WithOrigins(frontendOrigin)
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials(); 
