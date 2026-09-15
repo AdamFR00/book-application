@@ -70,10 +70,15 @@ var app = builder.Build();
 
 app.UseCors(FrontendCorPolicyName);
 
+app.UseStaticFiles();
+app.UseDefaultFiles();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapFallbackToFile("index.html");
 
 app.Run();
 
