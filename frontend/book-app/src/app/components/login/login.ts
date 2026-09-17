@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, inject } from "@angular/core";
+import { Component, inject, signal } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -18,6 +18,8 @@ import { Router, RouterLink } from "@angular/router";
 export class Login {
   private http = inject(HttpClient);
   private router = inject(Router);
+  signInError = signal<boolean>(false);
+  signInErrorMessage = signal<string | null>(null);
 
   loginForm: FormGroup = new FormGroup({
     UserName: new FormControl("", {
@@ -41,8 +43,11 @@ export class Login {
           this.router.navigate(["/home"]);
         },
         error: (error) => {
+          this.signInError.set(true);
           if (error.status == 401) {
-            alert("Wrong username or password.");
+            this.signInErrorMessage.set(error.error);
+          } else {
+            this.signInErrorMessage.set("Something went wrong.");
           }
         },
       });
