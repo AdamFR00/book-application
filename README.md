@@ -5,7 +5,7 @@ A full-stack book management application.
 Users can register and log in, manage their personal collection of
 books, and save up to five favourite quotes.
 
-Can be publicly available [here](https://booknest-ns2n.onrender.com/) 
+Public website can be viewed [here](https://booknest-ns2n.onrender.com/) 
 
 ## Tech Stack
 
