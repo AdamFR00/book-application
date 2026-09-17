@@ -19,13 +19,18 @@
           </textarea>
         </div>
 
-        <button
-          type="submit"
-          class="btn btn-primary"
-          [disabled]="quoteForm.invalid"
-        >
-          Add Quote
-        </button>
+        <div class="d-flex gap-2 align-items-center">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="quoteForm.invalid"
+          >
+            Add Quote
+          </button>
+          @if(quoteCreationError()){
+            <span class="text-danger fw-semibold">{{quoteCreationMessage()}}</span>
+          }
+        </div>
       </form>
     </div>
   </div>

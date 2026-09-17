@@ -34,8 +34,14 @@
             </button>
           </div>
         </div>
-        }
-      </div>
+      }
+    </div>
+    @if(quoteRetrievalError()){
+      <p class="text-danger fw-semibold">{{quoteRetrievalError()}}</p>
+    }
+    @if(quoteRemovalError()){
+        <p class="text-danger fw-semibold">{{quoteRemovalError()}}</p>
+      }
     </div>
   </div>
 </div>

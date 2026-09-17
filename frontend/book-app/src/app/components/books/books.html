@@ -14,7 +14,7 @@
       <div class="list-group">
         @for (book of books(); track book.bookId) {
         <div class="list-group-item py-4 d-flex align-items-start">
-          <div class="fw-semibold text-center fs-5 flex-grow-1">
+          <div class="fw-semibold text-center fs-5 flex-grow-1 book-text">
             {{ book.title }} by {{book.author}} @if (book.yearPublished) {
             <span> | {{book.yearPublished}}</span>
             }
@@ -38,6 +38,12 @@
         </div>
         }
       </div>
+      @if(bookRetrievalError()){
+      <p class="text-danger fw-semibold">{{bookRetrievalError()}}</p>
+    }
+    @if(bookRemovalError()){
+        <p class="text-danger fw-semibold">{{bookRemovalError()}}</p>
+      }
     </div>
   </div>
 </div>

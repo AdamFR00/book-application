@@ -28,6 +28,8 @@ export class Quotes implements OnInit {
 
   private http = inject(HttpClient);
   quotes = signal<Quote[]>([]);
+  quoteRetrievalError = signal<string | null>(null);
+  quoteRemovalError = signal<string | null>(null);
 
   ngOnInit(): void {
     this.getQuotes();
@@ -41,7 +43,7 @@ export class Quotes implements OnInit {
         console.log("Retrieved successfully! ", this.quotes());
       },
       error: (error) => {
-        console.log(`Something went wrong, error: ${error}`);
+        this.quoteRetrievalError.set(error.error);
       },
     });
   }
@@ -55,8 +57,7 @@ export class Quotes implements OnInit {
         console.log(`Removed quote with id ${quoteId} from the backend.`);
       },
       error: (error) => {
-        alert("Failed to remove quote, please try again.");
-        console.log(error);
+        this.quoteRemovalError.set(error.error);
       },
     });
   }

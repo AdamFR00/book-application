@@ -42,3 +42,10 @@
 .edit-button:active {
   transform: scale(0.9);
 }
+
+.book-text {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}

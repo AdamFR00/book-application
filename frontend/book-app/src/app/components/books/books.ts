@@ -18,7 +18,8 @@ export class Books implements OnInit {
   faPen = faPen;
   faX = faX;
   private http = inject(HttpClient);
-
+  bookRemovalError = signal<string | null>(null);
+  bookRetrievalError = signal<string | null>(null);
   books = signal<Book[]>([]);
 
   ngOnInit(): void {
@@ -33,7 +34,7 @@ export class Books implements OnInit {
         console.log("Retrieved successfully! ", this.books());
       },
       error: (error) => {
-        console.log(`Something went wrong, error: ${error}`);
+        this.bookRetrievalError.set(error.error);
       },
     });
   }
@@ -47,8 +48,7 @@ export class Books implements OnInit {
         console.log(`Removed book with id ${bookId} from the backend.`);
       },
       error: (error) => {
-        alert("Failed to remove book, please try again.");
-        console.log(error);
+        this.bookRemovalError.set(error.error);
       },
     });
   }
