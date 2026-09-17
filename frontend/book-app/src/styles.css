@@ -1,20 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 .cursor-pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .app-layout {
-    min-height: 100vh;
-    display: flex; 
-    flex-direction: column;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .app-content {
-    flex: 1;
+  flex: 1;
 
-    background-image: url('/images/background-application.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  background-image: url("/images/background-application.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
-

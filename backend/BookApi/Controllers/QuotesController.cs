@@ -18,7 +18,7 @@ namespace BookApi.Controllers
         {
             var userId = User.GetUserId();
 
-            if(userId == null)
+            if (userId == null)
             {
                 return Unauthorized();
             }
@@ -37,13 +37,13 @@ namespace BookApi.Controllers
         {
             var userId = User.GetUserId();
 
-            if(userId == null)
+            if (userId == null)
             {
                 return Unauthorized();
             }
             var quote = await context.Quotes.FirstOrDefaultAsync(q => q.UserId == userId && q.QuoteId == id);
 
-            if(quote == null)
+            if (quote == null)
             {
                 return NotFound($"Quote with {id} not found.");
             }
@@ -61,18 +61,18 @@ namespace BookApi.Controllers
         {
             var userId = User.GetUserId();
 
-            if(userId == null)
+            if (userId == null)
             {
                 return Unauthorized();
             }
             int quoteCount = await context.Quotes.CountAsync(q => q.UserId == userId);
 
-            if(quoteCount >= MaxQuotesPerUser)
+            if (quoteCount >= MaxQuotesPerUser)
             {
                 return Conflict($"Maximum quote limit reached");
             }
 
-            Quote quote = new ()
+            Quote quote = new()
             {
                 Content = dto.Content,
                 UserId = userId.Value
@@ -89,7 +89,7 @@ namespace BookApi.Controllers
 
             return CreatedAtAction(
                 nameof(GetQuote),
-                new {id = quote.QuoteId},
+                new { id = quote.QuoteId },
                 createdQuote
             );
         }
@@ -98,13 +98,13 @@ namespace BookApi.Controllers
         {
             var userId = User.GetUserId();
 
-            if(userId == null)
+            if (userId == null)
             {
                 return Unauthorized();
             }
 
             var quote = await context.Quotes.FirstOrDefaultAsync(q => q.UserId == userId && q.QuoteId == id);
-            if(quote == null)
+            if (quote == null)
             {
                 return NotFound($"Quote with id {id} not found.");
             }
@@ -125,13 +125,13 @@ namespace BookApi.Controllers
         {
             var userId = User.GetUserId();
 
-            if(userId == null)
+            if (userId == null)
             {
                 return Unauthorized();
             }
             var quote = await context.Quotes.FirstOrDefaultAsync(q => q.UserId == userId && q.QuoteId == id);
 
-            if(quote == null)
+            if (quote == null)
             {
                 return NotFound($"Quote with id {id} not found.");
             }
@@ -141,6 +141,6 @@ namespace BookApi.Controllers
 
             return NoContent();
         }
-        
+
     }
 }

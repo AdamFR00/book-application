@@ -7,11 +7,11 @@ namespace BookApi.Models
 
         public string Author { get; set; } = null!;
 
-        public int YearPublished {get; set;}
+        public int YearPublished { get; set; }
 
-        public int UserId {get; set;}
+        public int UserId { get; set; }
 
-        public User User {get; set;} = null!;
+        public User User { get; set; } = null!;
 
     }
 }

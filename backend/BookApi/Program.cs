@@ -7,10 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
-var FrontendCorPolicyName = "Frontend";
 
 var builder = WebApplication.CreateBuilder(args);
-var frontendOrigin = builder.Configuration["FrontendOrigin"] ?? "http://localhost:4200";
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -44,7 +42,7 @@ builder.Services.AddAuthentication(
     {
         OnMessageReceived = context =>
         {
-            context.Token = 
+            context.Token =
                 context.Request.Cookies["accessToken"];
             return Task.CompletedTask;
         }
@@ -53,18 +51,6 @@ builder.Services.AddAuthentication(
 
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: FrontendCorPolicyName,
-            policy =>
-            {
-                policy.WithOrigins(frontendOrigin)
-                    .AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowCredentials(); 
-            });
-});
 
 var app = builder.Build();
 
@@ -76,7 +62,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseCors(FrontendCorPolicyName);
 app.MapFallbackToFile("index.html");
 
 app.Run();

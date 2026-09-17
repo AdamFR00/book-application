@@ -1,14 +1,15 @@
 a:hover {
-    transform: translateY(2px);
-    color: #555151
+  transform: translateY(2px);
+  color: #555151;
 }
 
 a {
-    transition: transform 0.2s ease, color 0.2 ease;
+  transition:
+    transform 0.2s ease,
+    color 0.2 ease;
 }
 
 .navbar-button:hover {
-    transform: translateY(2px);
-    color: #555151
+  transform: translateY(2px);
+  color: #555151;
 }
-

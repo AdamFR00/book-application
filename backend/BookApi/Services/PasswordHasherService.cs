@@ -23,7 +23,7 @@ namespace BookApi.Services
         {
             var parts = hashedPassword.Split('-');
 
-            if(parts.Length != 2)
+            if (parts.Length != 2)
             {
                 return PasswordVerificationResult.Failed;
             }

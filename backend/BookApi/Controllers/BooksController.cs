@@ -16,10 +16,10 @@ namespace BookApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetBooks()
         {
-            
+
             var userId = User.GetUserId();
 
-            if(userId == null)
+            if (userId == null)
             {
                 return Unauthorized();
             }
@@ -40,13 +40,13 @@ namespace BookApi.Controllers
         {
             var userId = User.GetUserId();
 
-            if(userId == null)
+            if (userId == null)
             {
                 return Unauthorized();
             }
             var book = await context.Books.FirstOrDefaultAsync(b => b.UserId == userId && b.BookId == id);
 
-            if(book == null)
+            if (book == null)
             {
                 return NotFound($"Book with {id} not found.");
             }
@@ -64,13 +64,13 @@ namespace BookApi.Controllers
         {
             var userId = User.GetUserId();
 
-            if(userId == null)
+            if (userId == null)
             {
                 return Unauthorized();
             }
             var book = await context.Books.FirstOrDefaultAsync(b => b.UserId == userId && b.BookId == id);
 
-            if(book == null)
+            if (book == null)
             {
                 return NotFound($"Book with {id} not found.");
             }
@@ -86,13 +86,13 @@ namespace BookApi.Controllers
         {
             var userId = User.GetUserId();
 
-            if(userId == null)
+            if (userId == null)
             {
                 return Unauthorized();
             }
             var book = await context.Books.FirstOrDefaultAsync(b => b.UserId == userId && b.BookId == id);
 
-            if(book == null)
+            if (book == null)
             {
                 return NotFound($"Book with {id} not found.");
             }
@@ -119,7 +119,7 @@ namespace BookApi.Controllers
         {
             var userId = User.GetUserId();
 
-            if(userId == null)
+            if (userId == null)
             {
                 return Unauthorized();
             }
@@ -135,10 +135,10 @@ namespace BookApi.Controllers
             }
             Book book = new()
             {
-              Title = dto.Title,
-              Author = dto.Author,
-              YearPublished = dto.YearPublished,
-              UserId = userId.Value  
+                Title = dto.Title,
+                Author = dto.Author,
+                YearPublished = dto.YearPublished,
+                UserId = userId.Value
             };
             context.Books.Add(book);
             await context.SaveChangesAsync();
@@ -153,7 +153,7 @@ namespace BookApi.Controllers
 
             return CreatedAtAction(
                 nameof(GetBook),
-                new {id = book.BookId},
+                new { id = book.BookId },
                 result
             );
         }
