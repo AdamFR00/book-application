@@ -49,9 +49,7 @@ export class EditQuote {
 
   updateQuote(id: number) {
     this.http
-      .put(`${environment.apiUrl}/quotes/${id}`, this.quoteForm.value, {
-        withCredentials: true,
-      })
+      .put(`${environment.apiUrl}/quotes/${id}`, this.quoteForm.value)
       .subscribe({
         next: () => {
           console.log("Quote updated");

@@ -28,17 +28,15 @@ export class SideBar {
   faArrowRight = faArrowRight;
 
   onLogout() {
-    this.http
-      .post(`${environment.apiUrl}/auth/logout`, {}, { withCredentials: true })
-      .subscribe({
-        next: (response) => {
-          console.log(response);
-          this.router.navigate(["/login"]);
-        },
-        error: (error) => {
-          console.log(error);
-          this.router.navigate(["/login"]);
-        },
-      });
+    this.http.post(`${environment.apiUrl}/auth/logout`, {}).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.router.navigate(["/login"]);
+      },
+      error: (error) => {
+        console.log(error);
+        this.router.navigate(["/login"]);
+      },
+    });
   }
 }
