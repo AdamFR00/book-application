@@ -13,7 +13,7 @@ namespace BookApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController (
+    public class AuthController(
         AppDbContext context,
         IPasswordHasher<User> passwordHasher,
         JwtTokenService tokenProvider) : ControllerBase
@@ -23,12 +23,13 @@ namespace BookApi.Controllers
         {
             var usernameExists = await context.Users.AnyAsync(u => u.UserName == request.UserName);
 
-            if(usernameExists)
+            if (usernameExists)
             {
                 return BadRequest("Username is already in use.");
             }
 
-            var user = new User{
+            var user = new User
+            {
                 UserName = request.UserName,
             };
             user.PasswordHash = passwordHasher.HashPassword(user, request.Password);
@@ -42,16 +43,16 @@ namespace BookApi.Controllers
         public async Task<IActionResult> LoginUser(LoginDto request)
         {
             User? user = await context.Users.FirstOrDefaultAsync(u => u.UserName == request.UserName);
-            if(user == null)
+            if (user == null)
             {
                 return Unauthorized("Invalid username or password.");
             }
             PasswordVerificationResult verifyResult = passwordHasher.VerifyHashedPassword(user, user.PasswordHash, request.Password);
 
-            if(verifyResult == PasswordVerificationResult.Failed)
+            if (verifyResult == PasswordVerificationResult.Failed)
             {
                 return Unauthorized("Invalid username or password");
-                
+
             }
             string token = tokenProvider.Create(user);
             Response.Cookies.Append(
@@ -80,7 +81,7 @@ namespace BookApi.Controllers
         {
             var userId = User.GetUserId();
 
-            if(userId == null)
+            if (userId == null)
             {
                 return Unauthorized();
             }
@@ -88,7 +89,7 @@ namespace BookApi.Controllers
             var quotes = await context.Quotes.Where(q => q.UserId == userId).ToListAsync();
             var user = await context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
 
-            if(user == null)
+            if (user == null)
             {
                 return NotFound();
             }
@@ -110,17 +111,18 @@ namespace BookApi.Controllers
         {
             var userName = User.FindFirstValue(ClaimTypes.Name);
 
-            if(userName == null)
+            if (userName == null)
             {
                 return Unauthorized();
-            }else
+            }
+            else
             {
                 return Ok(new
                 {
                     userName
                 });
             }
-            
+
         }
     }
 }

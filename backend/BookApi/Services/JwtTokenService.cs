@@ -13,7 +13,7 @@ namespace BookApi.Services
             var secretKey = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(
                     configuration["Jwt:Key"]!));
-            
+
             var credentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -21,7 +21,7 @@ namespace BookApi.Services
                 Subject = new ClaimsIdentity(
                     [
                         new Claim(
-                            ClaimTypes.NameIdentifier, 
+                            ClaimTypes.NameIdentifier,
                             user.UserId.ToString()
                         ),
                         new Claim(

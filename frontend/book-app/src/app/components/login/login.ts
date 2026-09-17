@@ -1,51 +1,50 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import { environment } from '../../../environments/environment';
-import { Router, RouterLink } from '@angular/router';
+import { HttpClient } from "@angular/common/http";
+import { Component, inject } from "@angular/core";
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { environment } from "../../../environments/environment";
+import { Router, RouterLink } from "@angular/router";
 
 @Component({
   imports: [ReactiveFormsModule, RouterLink],
-  selector: 'app-login',
-  styleUrl: './login.css',
-  templateUrl: './login.html',
+  selector: "app-login",
+  styleUrl: "./login.css",
+  templateUrl: "./login.html",
 })
 export class Login {
   private http = inject(HttpClient);
   private router = inject(Router);
 
-
-  
   loginForm: FormGroup = new FormGroup({
-    UserName: new FormControl('',{
+    UserName: new FormControl("", {
       nonNullable: true,
-      validators: [Validators.required]
-    }
-  ),
-    Password: new FormControl('',{
+      validators: [Validators.required],
+    }),
+    Password: new FormControl("", {
       nonNullable: true,
-      validators: [Validators.required]
-    }
-    ),
+      validators: [Validators.required],
+    }),
   });
-  
-  onLogin(){
-    this.http.post(
-      `${environment.apiUrl}/auth/login-user`,
-        this.loginForm.value, 
-        {withCredentials: true,
-        responseType: 'text'
-        }).subscribe({
-        next:(result)=>{
-          console.log(result)
-          this.router.navigate(['/home']) 
+
+  onLogin() {
+    this.http
+      .post(`${environment.apiUrl}/auth/login-user`, this.loginForm.value, {
+        responseType: "text",
+      })
+      .subscribe({
+        next: (result) => {
+          console.log(result);
+          this.router.navigate(["/home"]);
         },
-        error: error => {
-          if(error.status == 401) {
-            alert("Wrong username or password.")
+        error: (error) => {
+          if (error.status == 401) {
+            alert("Wrong username or password.");
           }
-        }
-        }
-    );
+        },
+      });
   }
 }
