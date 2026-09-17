@@ -7,6 +7,8 @@ books, and save up to five favourite quotes.
 
 Public website can be viewed [here](https://booknest-ns2n.onrender.com/) 
 
+OBS: As the website is hosted on a free version of render requests can be a bit slow if the website has been inactive for a while.
+
 ## Tech Stack
 
 ### Frontend
