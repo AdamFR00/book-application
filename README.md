@@ -13,7 +13,7 @@ Public website can be viewed [here](https://booknest-ns2n.onrender.com/)
 
 -   Angular 20
 -   TypeScript
--   Bootstrap
+-   Bootstrap 5
 -   Font Awesome
 
 ### Backend
