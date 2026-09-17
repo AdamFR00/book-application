@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import {
   FormControl,
@@ -7,7 +7,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { environment } from "../../../environments/environment";
-import { ActivatedRoute, Router, RouterLink } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Book } from "../../models/book";
 
 @Component({
@@ -21,6 +21,7 @@ export class EditBook implements OnInit {
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
   bookId!: number;
+  bookUpdateErrorMessage = signal<string | null>(null);
 
   ngOnInit() {
     this.bookId = Number(this.activatedRoute.snapshot.paramMap.get("id"));
@@ -54,6 +55,11 @@ export class EditBook implements OnInit {
         next: () => {
           console.log("Book updated!");
           this.router.navigate(["/home/books"]);
+        },
+        error: (error) => {
+          this.bookUpdateErrorMessage.set(
+            `Something went wrong, ${error.error}`,
+          );
         },
       });
   }

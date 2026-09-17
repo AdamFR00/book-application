@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, signal } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import {
   FormControl,
@@ -20,6 +20,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 export class CreateBook {
   private http = inject(HttpClient);
   private router = inject(Router);
+  bookCreationError = signal<string | null>(null);
   faArrowLeft = faArrowLeft;
   bookForm: FormGroup = new FormGroup({
     Title: new FormControl<string>("", {
@@ -44,9 +45,7 @@ export class CreateBook {
           this.router.navigate(["/home/books"]);
         },
         error: (error) => {
-          alert(`Failed to create book.`);
-          console.log("Book creation failed due to: ", error);
-          this.router.navigate(["/home/books"]);
+          this.bookCreationError.set(error.error);
         },
       });
   }

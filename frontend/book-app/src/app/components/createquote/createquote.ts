@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, signal } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import {
   FormControl,
@@ -20,6 +20,8 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 export class CreateQuote {
   private http = inject(HttpClient);
   private router = inject(Router);
+  quoteCreationError = signal<boolean>(false);
+  quoteCreationMessage = signal<string | null>(null);
   faArrowLeft = faArrowLeft;
   quoteForm: FormGroup = new FormGroup({
     content: new FormControl<string>("", {
@@ -37,9 +39,16 @@ export class CreateQuote {
           this.router.navigate(["/home/quotes"]);
         },
         error: (error) => {
-          alert(`Failed to create quote, ${error.error}`);
-          console.log("Quote creation failed, ", error.error);
-          this.router.navigate(["/home/quotes"]);
+          this.quoteCreationError.set(true);
+          if (error.status == 409) {
+            this.quoteCreationMessage.set(
+              `${error.error}, remove quotes to add more.`,
+            );
+          } else {
+            this.quoteCreationMessage.set(
+              "Something went wrong, please try again",
+            );
+          }
         },
       });
   }

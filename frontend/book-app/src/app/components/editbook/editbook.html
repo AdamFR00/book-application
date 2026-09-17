@@ -33,14 +33,19 @@
             formControlName="YearPublished"
           />
         </div>
-
-        <button
-          type="submit"
-          class="btn btn-primary"
-          [disabled]="bookForm.invalid"
-        >
-          Save Changes
-        </button>
+        <div class="d-flex gap-2 align-items-center">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="bookForm.invalid"
+          >
+            Save Changes
+          </button>
+          @if (bookUpdateErrorMessage()) {
+            <span class="text-danger fw-semibold">{{bookUpdateErrorMessage()}}</span>
+          }
+          <span class="text-danger"></span>
+        </div>
       </form>
     </div>
   </div>

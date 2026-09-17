@@ -10,14 +10,14 @@
     <div class="card-header text-center text-dark">
       <h3>Quotes</h3>
     </div>
-    <div class="card-body p-4">
+    <div class="card-body p-5">
       <div class="list-group">
         @for (quote of quotes(); track quote.quoteId) {
-        <div class="list-group-item py-3">
-          <div class="fw-semibold text-center fs-5 me-5">
+        <div class="list-group-item py-4 d-flex align-items-start">
+          <div class="fw-semibold text-center fs-5 flex-grow-1">
             <q class="quote-text">{{quote.content}}</q>
           </div>
-          <div class="d-flex gap position-absolute top-0 end-0 mt-2 me-2">
+          <div class="d-flex gap-2 ms-2">
             <button
               type="button"
               class="nav-link edit-button navbar-button"
@@ -34,8 +34,14 @@
             </button>
           </div>
         </div>
-        }
-      </div>
+      }
+    </div>
+    @if(quoteRetrievalError()){
+      <p class="text-danger fw-semibold">{{quoteRetrievalError()}}</p>
+    }
+    @if(quoteRemovalError()){
+        <p class="text-danger fw-semibold">{{quoteRemovalError()}}</p>
+      }
     </div>
   </div>
 </div>
