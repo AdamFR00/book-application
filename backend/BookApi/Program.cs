@@ -68,11 +68,16 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.UseAuthentication();
 app.UseAuthorization();
-app.MapControllers();
-app.UseCors(FrontendCorPolicyName);
 
+app.MapControllers();
+
+app.UseCors(FrontendCorPolicyName);
+app.MapFallbackToFile("index.html");
 
 app.Run();
 

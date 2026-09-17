@@ -1,0 +1,17 @@
+**/node_modules/
+**/dist/
+**/.angular/
+
+
+**/bin/
+**/obj/
+
+.git/
+.gitignore
+
+.vscode/
+.idea/
+**/.env
+
+.DS_Store
+Thumbs.db
