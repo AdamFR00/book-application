@@ -33,7 +33,7 @@ COPY --from=frontend-build /frontend/dist/book-app/browser ./wwwroot
 
 EXPOSE 10000
 
-ENV ASPNETCORE URLS=http://+:10000
+ENV ASPNETCORE_HTTP_PORTS=10000
 
 ENTRYPOINT [ "dotnet", "BookApi.dll" ]
 
